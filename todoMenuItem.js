@@ -190,7 +190,8 @@ var TodoMenuItem = GObject.registerClass({
             if (!this.task.complete) {
                 this._addDoneButton();
             } else {
-                this._addArchiveButton();
+                this.actor.add_style_class_name('doneTaskItem');
+                // this._addArchiveButton();
             }
         }
         if (this.settings.get('show-delete-button')) {
@@ -234,7 +235,6 @@ var TodoMenuItem = GObject.registerClass({
         archiveButton.connect('clicked', () => {
             this.taskActions.archiveAction(this.task);
         });
-        this.actor.add_style_class_name('doneTaskItem');
         this.addActor(archiveButton);
     }
 

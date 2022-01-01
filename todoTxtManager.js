@@ -767,7 +767,8 @@ const TodoTxtButton = GObject.registerClass({
     }
 
     completeTask(task) {
-        const doneTask = new JsTodo.TodoTxtItem(task.toString(), this.enabledExtensions);
+        const doneTaskStr = "+completed " + task.toString();
+        const doneTask = new JsTodo.TodoTxtItem(doneTaskStr, this.enabledExtensions);
         this.decorator.addLoggingToNamespace(doneTask);
         doneTask.complete = true;
         doneTask.completed = new Date();
