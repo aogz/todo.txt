@@ -401,18 +401,10 @@ var TodoMenuItem = GObject.registerClass({
             can_focus: true,
             x_expand: true
         });
-        this.editTask.set_primary_icon(new St.Icon({
-            icon_name: 'document-save-symbolic',
-            icon_size: 14
-        }));
         this.editTask.set_secondary_icon(new St.Icon({
             icon_name: 'edit-delete-symbolic',
             icon_size: 14
         }));
-        this.editTask.connect('primary-icon-clicked', () => {
-            this.taskActions.editAction(oldTask, new JsTodo.TodoTxtItem(this.editTask.get_text()));
-            this.exitEditMode();
-        });
         this.editTask.connect('secondary-icon-clicked', () => this.exitEditMode());
         this.editTask.clutter_text.connect('key-press-event', (actor, event) => {
             const symbol = event.get_key_symbol();
