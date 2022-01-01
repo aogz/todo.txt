@@ -90,6 +90,9 @@ var TodoTopBar = GObject.registerClass({
         this.formatter.setReplacement('hidden', () => {
             return this.taskInfoProvider.getNbOfHiddenTasks();
         });
+        this.formatter.setReplacement('done', () => {
+            return this.taskInfoProvider.getNbOfUnarchivedTasks() - this.taskInfoProvider.getNbOfUndoneTasks();
+        });
     }
 
     _createText(initialText) {
@@ -118,7 +121,8 @@ var TodoTopBar = GObject.registerClass({
         this._updateButtonText({
             'unarchived': '...',
             'undone': '...',
-            'hidden': '...'
+            'hidden': '...',
+            'done': '...',
         });
 
         const iconNames = [
@@ -137,7 +141,8 @@ var TodoTopBar = GObject.registerClass({
         this._updateButtonText({
             'unarchived': ' X ',
             'undone': ' X ',
-            'hidden': ' X '
+            'hidden': ' X ',
+            'done': ' X ',
         });
         this._changeIcon('dialog-error-symbolic');
     }
